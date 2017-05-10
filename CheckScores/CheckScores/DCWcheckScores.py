@@ -62,7 +62,7 @@ if len(mostRecentEvents) > 0 :
         
  
 
-        # if the last update was too long ago, write to a file (IFTTT will generate an email)
+        # If the run time is too long, send an email
         if (rosterUpdateIsRunning and minutesSinceLastRun > rosterThreshold) :
             # fout = open(filepath + "_" + "updateClanMembers_update_" + str(minutesSinceLastRun) + "min.txt", "w")
             msg = "\r\n".join([
@@ -81,6 +81,6 @@ if len(mostRecentEvents) > 0 :
               "To: noreply@destinyclanwars.com",
               "Subject: WARNING: DCW may have stopped",
               "",
-              "WARNING: The roster refresh is currently running and has not completed in " + str(minutesSinceLastRun) + " minutes and is beyond the configured threshold."
+              "WARNING: The score refresh is currently running and has not completed in " + str(minutesSinceLastRun) + " minutes and is beyond the configured threshold."
               ])
             sendEmail.sendMessage(msg)

@@ -14,6 +14,7 @@ euser = config.get('email','euser')
 epasswd = config.get('email','epasswd')
 
 
+
 # called to send a passed message
 def sendMessage(msg) :
     
