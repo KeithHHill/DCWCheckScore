@@ -32,12 +32,12 @@ if len(mostRecentEvents) > 0 :
     for mostRecentEvent in mostRecentEvents :
         # check if a roster update is running
         lastRuns = db.fetchAll("""select *, TIMEDIFF(now(),start_time) as time_since_last_run 
-                                    from script_runs 
-                                    where message is null
-                                    and ((script in("activities_threaded instance_1","updateClanMembers_update", "carnage_threaded instance_1")
-                                    and records > 0) or script in("updateClanMembers_update")) 
-                                    order by start_time desc
-                                    limit 3"""
+                                from script_runs 
+                                where message is null
+                                and ((script in("activities_threaded instance_1", "carnage_threaded instance_1")
+                                and records > 0) or (script in("updateClanMembers_update") and end_time is null )) 
+                                order by start_time desc
+                                limit 3"""
                               )
         for lastRun in lastRuns :
             if str(lastRun["script"]) == "updateClanMembers_update" :
